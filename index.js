@@ -1,5 +1,4 @@
-const envFile = process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.local';
-require('dotenv').config({ path: envFile });
+require('dotenv').config();
 const express = require('express');
 const { errorHandler } = require('./middleware/errorHandler');
 const routes = require('./routes/index');

@@ -1,7 +1,4 @@
 node_modules
 .env.local
-.env.prod
-!.env.local.example
-!.env.prod.example
 *.log
 business.db

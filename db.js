@@ -1,5 +1,4 @@
-const envFile = process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.local';
-require('dotenv').config({ path: envFile });
+require('dotenv').config();
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const User = require('./models/User');
