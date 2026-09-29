@@ -1,7 +1,7 @@
 const Customer = require('../models/Customer');
 
 const getAll = async (req, res) => {
-  const customers = await Customer.find().sort({ created_at: -1 });
+  const customers = await Customer.find({ deleted: { $ne: true } }).sort({ created_at: -1 });
   res.json(customers);
 };
 
@@ -22,7 +22,7 @@ const update = async (req, res) => {
 };
 
 const remove = async (req, res) => {
-  await Customer.findByIdAndDelete(req.params.id);
+  await Customer.findByIdAndUpdate(req.params.id, { deleted: true });
   res.json({ message: 'Customer deleted' });
 };
 
