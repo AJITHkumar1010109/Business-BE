@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { login, changePassword, getUser, changeUsername, verifyMenuPin, setMenuPin } = require('../controllers/authController');
-const { getAll, create, update, remove } = require('../controllers/customerController');
+const { getAll, create, update, remove, addPayment } = require('../controllers/customerController');
 
 router.get('/', (req, res) => {
   res.json({ message: 'API route working' });
@@ -18,5 +18,7 @@ router.get('/customers', getAll);
 router.post('/customers', create);
 router.put('/customers/:id', update);
 router.delete('/customers/:id', remove);
+
+router.post('/customers/:id/payment', addPayment);
 
 module.exports = router;

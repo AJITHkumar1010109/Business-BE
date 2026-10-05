@@ -11,6 +11,11 @@ const customerSchema = new mongoose.Schema({
   amount_balance: { type: Number, default: 0 },
   total_amount: { type: Number, default: 0 },
   status: { type: String, enum: ['Completed', 'Pending'], default: 'Pending' },
+  payment_history: [{
+    amount: { type: Number, required: true },
+    received_at: { type: Date, default: Date.now },
+    note: String,
+  }],
   deleted: { type: Boolean, default: false },
   created_at: { type: Date, default: Date.now },
 });
