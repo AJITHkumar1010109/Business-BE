@@ -8,9 +8,14 @@ const login = async (req, res) => {
 
   const cleanPhone = phone.replace(/\s+/g, '');
   const user = await User.findOne({ phone: cleanPhone });
-  if (!user) return res.status(401).json({ message: 'Invalid phone number or password' });
-  if (!bcrypt.compareSync(password, user.password))
+  if (!user) {
+    console.log('[Login] No user found for phone:', cleanPhone);
     return res.status(401).json({ message: 'Invalid phone number or password' });
+  }
+  if (!bcrypt.compareSync(password, user.password)) {
+    console.log('[Login] Password mismatch for phone:', cleanPhone);
+    return res.status(401).json({ message: 'Invalid phone number or password' });
+  }
 
   res.json({ message: 'Login successful', userId: user._id, phone: user.phone, username: user.username || '' });
 };
